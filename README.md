@@ -1,3 +1,15 @@
+# pickup.io
+
+
+## What is Pickup?
+Our product is an app called Pick Up that shows users  pickup sports games in the Vanderbilt area, allowing them to join or create these games at their convenience. Users can choose a sport, a designated number of people, an area to play in, and even specify genders if they would like to. Our app provides users with a safe and convenient way to connect with other college students to play pick up games. 
+
+## Frameworks using:
+For the tech stack, we will use Node and Express for our backend.
+FIGMA to sketch out UI models for the wireframe
+Next.js with react(allows CSR and SSR rendering) for frontend. If we want to optimize performance we will look in to SSR. We didn’t think want to think about the database, using cloud solution to make our lives easier. We will use MongoDB Atlas, but if we find that scaling is an issue, we will switch to planetscale and Prisma. Lastly, we will use Kafka.js for the group chat  functionality.
+
+
 # Create T3 App
 
 This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
