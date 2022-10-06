@@ -3,6 +3,7 @@ import Head from "next/head";
 import { trpc } from "../utils/trpc";
 import Card from "./components/card";
 import Image from "next/image";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
@@ -23,7 +24,7 @@ const Home: NextPage = () => {
 
        </div>
        <div className="flex justify-end ml-auto mr-auto space-x-20">
-        <button>Log In</button>
+        <Link href={'/login'}>Log In</Link>
         <button>Sign Up</button>
        </div>
       </div>
@@ -45,12 +46,12 @@ const Home: NextPage = () => {
           />
           <Card
             name="Browse event postings"
-            description="Within each groupchats, there is a feature to find events to meet up with your peers. You can add yourself to any event and DM other group memebers who are going to show up."
+            description="Within each groupchat, there is a feature to find events to meet up with your peers. You can add yourself to any event and DM other group members who are going to show up."
             documentation="/events"
           />
           <Card
             name="Meetup with other vandy students!"
-            description="Our application allows students to post events and suggest times where the most amount of people are avilable. RSVP for an event and MeetUp with your friends!"
+            description="Our application allows students to post events and suggest times where the most amount of people are available. RSVP for an event and meet up with your friends!"
             documentation="/meetup"
           />
          
