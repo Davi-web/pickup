@@ -24,7 +24,7 @@ const Home: NextPage = () => {
        </div>
        <div className="flex justify-end ml-auto mr-auto space-x-20">
         <button>Log In</button>
-        <button>Sign In</button>
+        <button>Sign Up</button>
        </div>
       </div>
 
