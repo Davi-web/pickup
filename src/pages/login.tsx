@@ -2,7 +2,7 @@ const login = () => {
     return (
     <div className="login">
     <h1>Login</h1>
-    <form action="/auth" method="post">
+    <form action="/api/login" method="POST">
         <label htmlFor="username"></label>
         <input type="text" name="username" placeholder="Username" id="username" required/>
 
