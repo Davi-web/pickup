@@ -9,7 +9,7 @@ const login = () => {
         <label htmlFor="password"></label>
         <input type="password" name="password" placeholder="Password" id="password" required/>
 
-        <input type="submit" value="Login"/>
+        <input type="submit" value="Submit"/>
     </form>
     </div>
     );
