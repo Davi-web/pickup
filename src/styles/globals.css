@@ -78,7 +78,7 @@
     justify-content: center;
     padding-top: 20px;
 }
-.register input[type="password"], .register input[type="text"] {
+.register input[type="password"], .register input[type="text"], .register input[type="email"] {
     width: 310px;
     height: 50px;
     border: 1px solid #dee0e4;
@@ -96,6 +96,22 @@
     color: #ffffff;
     transition: background-color 0.2s;
 }
+#submitBtn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background-color: #d8b410;
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+#submitBtn {
+    background-color: #d8b410;
+    transition: background-color 0.2s;
+}
+
 .register form input[type="submit"]:hover {
   background-color: #d8b410;
     transition: background-color 0.2s;

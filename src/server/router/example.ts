@@ -1,5 +1,7 @@
 import { createRouter } from "./context";
 import { z } from "zod";
+import { resolve } from "path";
+import { prisma } from "../db/client";
 
 export const exampleRouter = createRouter()
   .query("hello", {
@@ -18,4 +20,23 @@ export const exampleRouter = createRouter()
     async resolve({ ctx }) {
       return await ctx.prisma.example.findMany();
     },
+  })
+  .mutation("post-user", {
+    input: z.object({
+      username: z.string(),
+      email: z.string(),
+      password: z.string(),
+    }),
+    async resolve({input}) {
+      const postUser = await prisma?.user.create({
+        data: {
+          name: input.username,
+          email: input.email,
+          emailVerified: Date.now().toString(),
+          image: "default",
+        },
+      });
+      return {success: true, user: postUser};
+
+    }
   });
