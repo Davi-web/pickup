@@ -1,6 +1,5 @@
 import { createRouter } from "./context";
 import { z } from "zod";
-import { resolve } from "path";
 import { prisma } from "../db/client";
 
 export const exampleRouter = createRouter()
