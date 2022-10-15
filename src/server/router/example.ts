@@ -16,6 +16,18 @@ export const exampleRouter = createRouter()
       };
     },
   })
+  .query("get-user", {
+    input: z.object({
+      username: z.string(),
+    }),
+    async resolve({ input }) {
+      return prisma.user.findFirst({
+        where: {
+          name: input.username,
+        },
+      });
+    }
+  })
   .query("getAll", {
     async resolve({ ctx }) {
       return await ctx.prisma.example.findMany();
@@ -28,12 +40,13 @@ export const exampleRouter = createRouter()
       password: z.string(),
     }),
     async resolve({input}) {
-      const postUser = await prisma?.user.create({
+      const postUser = await prisma.user.create({
         data: {
           name: input.username,
           email: input.email,
-          emailVerified: Date.now().toString(),
+          emailVerified: new Date(),
           image: "default",
+          password: input.password,
         },
       });
       return {success: true, user: postUser};

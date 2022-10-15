@@ -1,17 +1,25 @@
 import { useState } from "react";
+import { trpc } from "../utils/trpc";
+import { useRouter } from "next/router";
 
 const Register = () => {
+    const router = useRouter();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [pswRepeat, setPswRepeat] = useState("");
+    const post = trpc.useMutation(["example.post-user"]);
+    const postUser = () => {
+        post.mutate({username, email, password});
+        router.push(`/profile/${username}`);
+    }
     
     
 
     return (
     <div className="register">
     <h1>SignUp to use PickUp!</h1>
-    <form action="/api/signup" method="post">
+    <form action="/api/signup" method="post" onSubmit={e => e.preventDefault()}>
         <label htmlFor="email"></label>
         <input type="email" name="email" placeholder="Enter Email" id="email" value={email} onChange={e=>setEmail(e.target.value)} required/>
 
@@ -23,7 +31,7 @@ const Register = () => {
 
         <label htmlFor="psw-repeat"></label>
         <input type="password" name="psw-repeat" placeholder="Repeat Password" id="psw-repeat" value={pswRepeat} onChange={e=>setPswRepeat(e.target.value)} required/>
-        <input type="submit" value="Submit"/>
+       <button id="submitBtn" onClick={postUser}>Submit</button>
     </form>
     <div id="errorMsg" className=" text-red-600 text-lg"/>
     </div>
