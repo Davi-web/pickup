@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { trpc } from "../../utils/trpc";
 
 
 export default function signup(req: NextApiRequest, res: NextApiResponse) {
