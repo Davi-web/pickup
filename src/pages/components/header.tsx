@@ -2,9 +2,12 @@ import { NextComponentType } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import pickupLogo from "../../../public/favicon.ico";
+import {signIn, signOut, useSession} from "next-auth/react";
 
 
 const Header: NextComponentType = () => {
+	const {data: session} = useSession();
+  	console.log(session);
     // Burger menus
     // const width = window?.innerWidth || 100;
     if (typeof window !== "undefined" && typeof document !== "undefined") {
@@ -54,9 +57,16 @@ const Header: NextComponentType = () => {
 return(
     <div>
 	<nav className="relative px-4 py-4 flex justify-between items-center bg-white">
-		<a className="text-3xl font-bold leading-none" href=".">
-			<Image height={40} width={40} src={pickupLogo} alt=""/>
-		</a>
+		{session?.user === undefined ? (
+			<Link className="text-3xl font-bold leading-none" href=".">
+				<Image height={40} width={40} src={pickupLogo} alt="" style={{borderRadius:"50%", cursor: "default"}}/>
+			</Link>
+		): (
+			<Link className="text-3xl font-bold leading-none" href="/">
+				<img height={40} width={40} src={session?.user?.image} alt={pickupLogo} style={{borderRadius: "50%", cursor:"default"}}/>
+			</Link>
+		)}
+		
 		<div className="lg:hidden">
 			<button className="navbar-burger flex items-center text-purple-600 p-3">
 				<svg className="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -81,12 +91,18 @@ return(
 			<li><a className="text-sm text-gray-400 hover:text-gray-500" href="#">Join a Sports Community</a></li>
 		
 		</ul>
-		<div className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200">
-            <Link href="/login">Sign In</Link>
-        </div>
-		<div className="hidden lg:inline-block py-2 px-6 bg-purple-500 hover:bg-purple-600 text-sm text-white font-bold rounded-xl transition duration-200">
-            <Link href="/register">Sign Up</Link>
-        </div>
+		{session?.user === undefined && (
+			<div className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200 cursor-pointer" onClick={()=> signIn()}>
+            	Sign In
+        	</div>
+		)}
+		{session?.user !== undefined &&(
+			<div className="hidden lg:inline-block py-2 px-6 bg-purple-500 hover:bg-purple-600 text-sm text-white font-bold rounded-xl transition duration-200 cursor-pointer" onClick={()=> signOut()}>
+            	Sign Out
+        	</div>
+		)}
+		
+		
 	</nav>
 	<div className="navbar-menu relative z-50 hidden">
 		<div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -124,8 +140,14 @@ return(
 			</div>
 			<div className="mt-auto">
 				<div className="pt-6">
-					<a className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="#">Sign in</a>
-					<a className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl" href="#">Sign Up</a>
+					{session?.user  && (
+						<div className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold bg-gray-50 hover:bg-gray-100 rounded-xl" onClick={()=>signIn()}>Sign in</div>
+
+					)}
+					{!session?.user  && (
+						<div className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl"onClick={()=> signOut()}>Sign Out</div>
+		
+					)}
 				</div>
 				<p className="my-4 text-xs text-center text-gray-400">
 					<span>Copyright © 2021</span>

@@ -5,10 +5,14 @@ import Card from "./components/card";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "./components/header";
+import { useSession, signIn, signOut } from "next-auth/react"
+
 
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
+  
 
+ 
   return (
     <>
       <Head>
@@ -17,7 +21,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
+      
       <Header/>
+
 
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
         <h1 className="text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]">

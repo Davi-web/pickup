@@ -1,6 +1,9 @@
 import { createRouter } from "./context";
 import { z } from "zod";
 import { prisma } from "../db/client";
+import { signUpSchema } from "../../common/validation/auth";
+import * as trpc from "@trpc/server";
+import { hash } from "argon2";
 
 export const exampleRouter = createRouter()
   .query("hello", {
@@ -17,12 +20,12 @@ export const exampleRouter = createRouter()
   })
   .query("get-user", {
     input: z.object({
-      username: z.string(),
+      id: z.string(),
     }),
     async resolve({ input }) {
-      return prisma.user.findFirst({
+      return prisma.user.findUnique({
         where: {
-          name: input.username,
+          id: input.id
         },
       });
     }
@@ -32,23 +35,34 @@ export const exampleRouter = createRouter()
       return await ctx.prisma.example.findMany();
     },
   })
-  .mutation("post-user", {
+  .mutation("delete-user",{
     input: z.object({
-      username: z.string(),
       email: z.string(),
-      password: z.string(),
     }),
-    async resolve({input}) {
-      const postUser = await prisma.user.create({
-        data: {
-          name: input.username,
+    async resolve({ input, ctx }) {
+      return await ctx.prisma.user.delete({
+        where: {
           email: input.email,
-          emailVerified: new Date(),
-          image: "default",
-          password: input.password,
         },
+      })
+    }
+  })
+  .mutation("post-user", {
+    input: signUpSchema,
+    async resolve({input, ctx}) {
+      const {username, email, password} = input;
+      const exists = await ctx.prisma.user.findFirst({
+        where:{
+          email
+       }
       });
-      return {success: true, user: postUser};
+      if(exists) {
+        throw new trpc.TRPCError({
+          code: "BAD_REQUEST",
+          message: "User already exists",
+        })
+      }
+      return {status: 2};
 
     }
   });
