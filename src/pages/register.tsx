@@ -8,12 +8,7 @@ const Register = () => {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [pswRepeat, setPswRepeat] = useState("");
-    const post = trpc.useMutation(["example.post-user"]);
-    const postUser = () => {
-        post.mutate({username, email, password});
-        router.push(`/profile/${username}`);
-    }
-    
+
     
 
     return (
@@ -31,7 +26,7 @@ const Register = () => {
 
         <label htmlFor="psw-repeat"></label>
         <input type="password" name="psw-repeat" placeholder="Repeat Password" id="psw-repeat" value={pswRepeat} onChange={e=>setPswRepeat(e.target.value)} required/>
-       <button id="submitBtn" onClick={postUser}>Submit</button>
+        <input type="submit" value="Submit"/>
     </form>
     <div id="errorMsg" className=" text-red-600 text-lg"/>
     </div>

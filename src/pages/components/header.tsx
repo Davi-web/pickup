@@ -7,7 +7,7 @@ import {signIn, signOut, useSession} from "next-auth/react";
 
 const Header: NextComponentType = () => {
 	const {data: session} = useSession();
-  	console.log(session);
+	console.log(session)
     // Burger menus
     // const width = window?.innerWidth || 100;
     if (typeof window !== "undefined" && typeof document !== "undefined") {
@@ -58,12 +58,12 @@ return(
     <div>
 	<nav className="relative px-4 py-4 flex justify-between items-center bg-white">
 		{session?.user === undefined ? (
-			<Link className="text-3xl font-bold leading-none" href=".">
-				<Image height={40} width={40} src={pickupLogo} alt="" style={{borderRadius:"50%", cursor: "default"}}/>
+			<Link className="text-3xl font-bold leading-none cursor-pointer" href=".">
+				<Image height={40} width={40} src={pickupLogo} alt="" style={{borderRadius:"50%"}}/>
 			</Link>
 		): (
-			<Link className="text-3xl font-bold leading-none" href="/">
-				<img height={40} width={40} src={session?.user?.image} alt={pickupLogo} style={{borderRadius: "50%", cursor:"default"}}/>
+			<Link className="text-3xl font-bold leading-none cursor-pointer" href="/">
+				<img height={40} width={40} src={session?.user?.image} alt={""} style={{borderRadius: "50%"}} referrerPolicy="no-referrer"/>
 			</Link>
 		)}
 		

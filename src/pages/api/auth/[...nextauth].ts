@@ -28,11 +28,11 @@ export const authOptions: NextAuthOptions = {
   ],
   theme: {
     colorScheme: "light",
-  },
-  session: {
-   strategy: "jwt",
+  },  
+  // session: {
+  //  strategy: "jwt",
 
-  }
+  // }
 };
 
 export default NextAuth(authOptions);
