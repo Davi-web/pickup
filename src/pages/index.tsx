@@ -11,8 +11,6 @@ import { useSession, signIn, signOut } from "next-auth/react"
 const Home: NextPage = () => {
   // const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
   const { data: session } = useSession();
-  
-
  
   return (
     <>
@@ -66,4 +64,3 @@ const Home: NextPage = () => {
 };
 
 export default Home;
-
