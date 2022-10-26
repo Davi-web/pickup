@@ -1,16 +1,27 @@
 import { trpc } from "../utils/trpc";
 import { useRouter } from "next/router";
+import dayjs, { Dayjs } from 'dayjs';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import TimePicker from '@mui/lab/TimePicker';
-import DateTimePicker from '@mui/lab/DateTimePicker';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import MobileDatePicker from '@mui/lab/MobileDatePicker';
-import React from 'react';
+// import LocalizationProvider from '@mui/x-date-pickers-pro/LocalizationProvider';
+// // or
+import {StyledEngineProvider} from '@mui/material/styles';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { useEffect, useState } from "react";
 
 const Register = () => {
+
+    const [value, setValue] = useState<Dayjs | null>(dayjs('2014-08-18T21:11:54'));
+    
+      const handleChange = (newValue: Dayjs | null) => {
+        setValue(newValue);
+      };
+   
     // const router = useRouter();
     // const [username, setUsername] = useState("");
     // const [password, setPassword] = useState("");
@@ -37,45 +48,41 @@ const Register = () => {
     // <div id="errorMsg" className=" text-red-600 text-lg"/>
     // </div>
     // )
-    const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
- 
-    const handleChange = (newValue:any) => {
-        setValue(newValue);
-    };
+      console.log(value)
+    
+      return (
 
-    return (
-        <div style={{margin: "5% 40%"}}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Stack spacing={3}>
-              <DesktopDatePicker
-                label="Date desktop"
-                inputFormat="MM/dd/yyyy"
-                value={value}
-                onChange={handleChange}
-                renderInput={(params:any) => <TextField {...params} />}
-              />
-              <MobileDatePicker
-                label="Date mobile"
-                inputFormat="MM/dd/yyyy"
-                value={value}
-                onChange={handleChange}
-                renderInput={(params:any) => <TextField {...params} />}
-              />
-              <TimePicker
-                label="Time"
-                value={value}
-                onChange={handleChange}
-                renderInput={(params:any) => <TextField {...params} />}
-              />
-              <DateTimePicker
-                label="Date&Time picker"
-                value={value}
-                onChange={handleChange}
-                renderInput={(params:any) => <TextField {...params} />}
-              />
-            </Stack>
-          </LocalizationProvider>
-        </div>
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <Stack spacing={3}>
+                    <DesktopDatePicker
+                    label="Date desktop"
+                    inputFormat="MM/DD/YYYY"
+                    value={value}
+                    onChange={handleChange}
+                    renderInput={(params) => <TextField {...params} />}
+                    />
+                    <MobileDatePicker
+                    label="Date mobile"
+                    inputFormat="MM/DD/YYYY"
+                    value={value}
+                    onChange={handleChange}
+                    renderInput={(params) => <TextField {...params} />}
+                    />
+                    <TimePicker
+                    label="Time"
+                    value={value}
+                    onChange={handleChange}
+                    renderInput={(params) => <TextField {...params} />}
+                    />
+                    <DateTimePicker
+                    label="Date&Time picker"
+                    value={value}
+                    onChange={handleChange}
+                    renderInput={(params) => <TextField {...params} />}
+                    />
+                </Stack>
+            </LocalizationProvider>
+
       );
     }
 
