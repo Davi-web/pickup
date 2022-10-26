@@ -74,5 +74,6 @@ model Events {
   eventName        String
   eventTime        DateTime
   eventDescription String?
+  eventLocation    String?
   usersAttending   User[]
 }

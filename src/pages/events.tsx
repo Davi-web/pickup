@@ -1,45 +1,67 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
+import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { trpc } from '../utils/trpc';
  
 export default function Events() {
   const [value, setValue] = useState<AdapterDayjs | null>(new AdapterDayjs);
 
-  const handleChange = (newValue: AdapterDayjs | null) => {
-    setValue(newValue);
+
+ 
+  const handleChange = (newValue:any) => {
+    console.log(Date.parse(newValue));
+    setValue(Date.parse(newValue));
   };
+  const onSubmit = () => {
+    events.mutate({
+      
+        name: 'test',
+        description: 'tst',
+        postedDate: new Date(Date.now()),
+        eventDate: new Date(value),
+        postedBy: "1",
+        eventLocation:"Rand",
 
-  const [description, setDescription] = useState("");
-  const [eventName, setEventName] = useState("");
-  const [location, setLocation] = useState("");
-
+    })
+  }
   return (
-    <div className="register">
-    <h1>Create an event to play with your friends!</h1>
-    <form action="/api/events" method="post" onSubmit={e => e.preventDefault()}>
-        <label htmlFor="Event Name"></label>
-        <input type="text" name="Event Name" placeholder="Enter event name" id="event-name" value={eventName} onChange={e=>setEventName(e.target.value)} required/>
+    <div className=' flex flex-col'>
+      <div className='flex justify-center pb-3'>
+      <h2>Enter Events Description</h2>
 
-        <label htmlFor="Event Description"></label>
-        <input type="text" name="Event Description" placeholder="Enter description" id="event-description" value={description} onChange={e=>setDescription(e.target.value)}/>
-
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateTimePicker
-            label="Select a date and time..."
-            value={value}
-            onChange={handleChange}
-            renderInput={(params) => <TextField {...params} required/>}
-            />
+      </div>
+      <div className='flex justify-center'>
+        <LocalizationProvider dateAdapter={AdapterDayjs} className=" flex justify-center">
+          <Stack spacing={3} >
+            
+              <MobileDatePicker
+              label="Date mobile"
+              inputFormat="MM/DD/YYYY"
+              value={value}
+              onChange={handleChange}
+              renderInput={(params) => <TextField {...params} />}
+              
+              />
+              <TimePicker
+              label="Time"
+              value={value}
+              onChange={handleChange}
+              renderInput={(params) => <TextField {...params} />}
+              />
+            
+          </Stack>
         </LocalizationProvider>
-
-        <label htmlFor="Location"></label>
-        <input type="text" name="Event Location" placeholder="Enter location" id="location" value={location} onChange={e=>setLocation(e.target.value)}/>
-
-        <input type="submit" value="Submit"/>
-    </form>
-    <div id="errorMsg" className=" text-red-600 text-lg"/>
+      </div>
+      <div className="flex justify-center pt-2">
+     <button onClick={onSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+        
+      </div>
+      
     </div>
-    );
+    
+  );
 }
