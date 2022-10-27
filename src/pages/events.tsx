@@ -7,13 +7,8 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { trpc } from '../utils/trpc';
  
-const Events = () => {
-  const [value, setValue] = useState(Date.now());
-  const events = trpc.useMutation(['events.post-events'], {
-    onSuccess: () => {
-      console.log('success');
-    }
-  })
+export default function Events() {
+  const [value, setValue] = useState<AdapterDayjs | null>(new AdapterDayjs);
 
  
   const handleChange = (newValue:any) => {
