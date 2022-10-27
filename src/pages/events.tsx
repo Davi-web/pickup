@@ -15,7 +15,6 @@ const Events = () => {
     }
   })
 
-
  
   const handleChange = (newValue:any) => {
     console.log(Date.parse(newValue));
