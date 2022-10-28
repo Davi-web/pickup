@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
-import Card from "./components/card";
+import Card from "../components/card";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "./components/header";
+import Header from "../components/header";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { StyledEngineProvider } from "@mui/material";
 
@@ -26,7 +26,12 @@ const Home: NextPage = () => {
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
         <h1 className="text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]">
           {session?.user !== undefined ? (
-            <span className="text-purple-300">Welcome to PickUp {session?.user?.name?.split(" ")[0]}</span>
+
+            <div className="flex flex-row">
+              <div className="text-purple-300 font-mono w-1/2 pr-10">Welcome</div>
+              <div className="pl-10 w-1/2">{session?.user?.name?.split(" ")[0]}</div>
+            </div>
+           
           ): (
            <span className="text-purple-300">PickUp</span>
 

@@ -4,6 +4,11 @@ import { z } from "zod";
 
 
 export const eventsRouter = createRouter()
+  .query("get-events" , {
+    async resolve({ ctx }) {
+      return await ctx.prisma.events.findMany();
+    }
+  })
   .mutation("post-events", {
     input: z.object({
       name: z.string(),
