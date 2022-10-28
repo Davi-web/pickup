@@ -26,6 +26,7 @@
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
     "moment": "^2.29.4",
+    "moment-timezone": "^0.5.38",
     "next": "12.3.1",
     "next-auth": "~4.10.3",
     "react": "18.2.0",
