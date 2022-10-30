@@ -12,11 +12,16 @@ export const eventsRouter = createRouter()
   .query("get-event-by-sports-type", {
     input: z.object({
       type: z.string(),
+      size: z.number().optional(),
     }),
     async resolve({ input, ctx }) {
       return await ctx.prisma.events.findMany({
         where: {
           sportsType: input.type
+        },
+        take: input.size,
+        orderBy:{
+          postedDate: "desc"
         }
       });
     }

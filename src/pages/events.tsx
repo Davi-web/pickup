@@ -53,8 +53,8 @@ export default function Events() {
         <label htmlFor="Event Location"></label>
         <input type="text" name="eventLocation" placeholder="Enter event location" id="location" value={location} onChange={e=>setLocation(e.target.value)}/>
 
-        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900">Select sport type</label>
-          <select id="countries" onChange={e => setSportsType(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <label htmlFor="sportsType" className="block mb-2 text-sm font-medium text-gray-900">Select sport type</label>
+          <select id="sportsType" onChange={e => setSportsType(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
             <option value="">Choose a sport</option>
             <option value="Basketball">Basketball</option>
             <option value="Soccer">Soccer</option>
