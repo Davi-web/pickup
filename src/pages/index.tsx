@@ -41,7 +41,7 @@ const Home: NextPage = () => {
           <Card
             name="Get started"
             description="Find friends at Vandy to start a pickup game with a click of a button"
-            documentation="/login"
+            documentation="/home"
           />
           <Card
             name="Join a Sports Group Chat"

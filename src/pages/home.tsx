@@ -2,7 +2,8 @@ import { trpc } from "../utils/trpc";
 import Event from "../components/event";
 
 const Home = () => {
-    const events = trpc.useQuery(["events.get-events"]);
+    const events = trpc.useQuery(["events.get-all-events"]);
+    const eventsBySportsType = trpc.useQuery(["events.get-event-by-sports-type", {type: "Spikeball"}]);
 
 
 
@@ -12,8 +13,8 @@ const Home = () => {
         <div className="flex justify-center">
             Events
             </div>
-            {events.data && events.data.map((event) => (
-                <div key={event.id} className="flex h-1/2 flex-col items-center align-middle w-3/4 min-w-fit border-sky-400 border-2 rounded-lg mb-5">
+            {eventsBySportsType.data && eventsBySportsType.data.map((event) => (
+                <div key={event.id} className="">
                     <Event
                     eventName={event.eventName}
                     eventDescription={event.eventDescription? event.eventDescription : "No description"}
@@ -21,6 +22,7 @@ const Home = () => {
                     eventLocation={event.eventLocation? event.eventLocation : "No location"}
                     postedBy={event.postedBy}
                     postedDate={event.postedDate}
+                    sportsType={event.sportsType? event.sportsType : "No sports type"}
                     />
                    
                 </div>

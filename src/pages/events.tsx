@@ -14,6 +14,7 @@ export default function Events() {
   const [eventName, setEventName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
+  const [sportsType, setSportsType] = useState("");
 
   const events = trpc.useMutation(["events.post-events"], {
     onSuccess: () => {
@@ -34,6 +35,7 @@ export default function Events() {
         eventDate: new Date(value),
         postedBy: "5",
         eventLocation: location,
+        sportsType: sportsType
     })
   }
 
@@ -51,13 +53,26 @@ export default function Events() {
         <label htmlFor="Event Location"></label>
         <input type="text" name="eventLocation" placeholder="Enter event location" id="location" value={location} onChange={e=>setLocation(e.target.value)}/>
 
+        <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900">Select sport type</label>
+          <select id="countries" onChange={e => setSportsType(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <option value="">Choose a sport</option>
+            <option value="Basketball">Basketball</option>
+            <option value="Soccer">Soccer</option>
+            <option value="Tennis">Tennis</option>
+            <option value="Volleyball">Volleyball</option>
+            <option value="Spikeball">Spikeball</option>
+            <option value="Frisbee">Frisbee</option>
+            <option value="Golf">Golf</option>
+            <option value="Other">Other</option>
+          </select>
+
       </form>
 
       <div className='flex justify-center'>
         <LocalizationProvider dateAdapter={AdapterDayjs} className=" flex justify-center">
           <Stack spacing={3} >
               <MobileDatePicker
-              label="Date mobile"
+              label="Event Time"
               inputFormat="MM/DD/YYYY"
               value={value}
               onChange={handleChange}

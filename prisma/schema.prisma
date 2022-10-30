@@ -73,7 +73,8 @@ model Events {
   postedDate       DateTime
   eventName        String
   eventTime        DateTime
-  eventDescription String?
-  eventLocation    String?
+  eventDescription String
+  eventLocation    String
+  sportsType       String
   usersAttending   User[]
 }

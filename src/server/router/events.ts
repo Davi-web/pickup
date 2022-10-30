@@ -4,9 +4,21 @@ import { z } from "zod";
 
 
 export const eventsRouter = createRouter()
-  .query("get-events" , {
+  .query("get-all-events" , {
     async resolve({ ctx }) {
       return await ctx.prisma.events.findMany();
+    }
+  })
+  .query("get-event-by-sports-type", {
+    input: z.object({
+      type: z.string(),
+    }),
+    async resolve({ input, ctx }) {
+      return await ctx.prisma.events.findMany({
+        where: {
+          sportsType: input.type
+        }
+      });
     }
   })
   .mutation("post-events", {
@@ -17,6 +29,7 @@ export const eventsRouter = createRouter()
       eventDate: z.date(),
       eventLocation: z.string(),
       postedBy: z.string(),
+      sportsType: z.string(),
     }),
     async resolve({ input, ctx }) {
       return await ctx.prisma.events.create({
@@ -27,6 +40,7 @@ export const eventsRouter = createRouter()
           postedBy:  input.postedBy,
           eventTime: input.eventDate,
           eventLocation: input.eventLocation,
+          sportsType: input.sportsType,
         },
       });
     }
