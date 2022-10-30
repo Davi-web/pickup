@@ -56,7 +56,7 @@ const Header: NextComponentType = () => {
 
 return(
     <div>
-	<nav className="relative px-4 py-4 flex justify-between items-center bg-white">
+	<nav className="relative px-4 py-4 flex justify-between items-center bg-slate-50">
 		{session?.user === undefined ? (
 			<Link className="text-3xl font-bold leading-none cursor-pointer" href=".">
 				<Image height={40} width={40} src={pickupLogo} alt="" style={{borderRadius:"50%"}}/>
