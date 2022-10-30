@@ -3,7 +3,6 @@ import Head from "next/head";
 import { trpc } from "../utils/trpc";
 import Card from "../components/card";
 import Image from "next/image";
-import Link from "next/link";
 import Header from "../components/header";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { StyledEngineProvider } from "@mui/material";
