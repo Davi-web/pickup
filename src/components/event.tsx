@@ -25,6 +25,7 @@ const Event = ({id, eventDescription, eventLocation, eventName, postedBy, posted
         return sportEmojis[sportsType];
     }
 
+
     return (
         <article className="bg-white dark:bg-slate-800 shadow-xl shadow-slate-200 dar:shadow-slate-800 rounded-lg">
                     <div className="p-3 shadow bg-indigo-500 text-indigo-50 uppercase grid place-items-center rounded-t-lg">
@@ -35,8 +36,9 @@ const Event = ({id, eventDescription, eventLocation, eventName, postedBy, posted
                     <div className="p-4 md:p-6 lg:p-8 grid gap-4 md:gap-6">
                             <div className="grid gap-1">
                                 <p className="text-slate-400 text-sm">Posted {postedDate.toLocaleString().substring(0,10)}</p>
+                            
                                 <h2 className="text-xl font-bold">
-                                    <a href="#" className="hover:underline">{eventName}</a>
+                                    <a href="#" className="hover:underline">{eventName} {getSportsEmoji(sportsType)}</a>
                                 </h2>
                                 <p className="text-slate-400 text-sm">{eventLocation}</p>
                                 <div className="grid gap-1">
@@ -56,7 +58,6 @@ const Event = ({id, eventDescription, eventLocation, eventName, postedBy, posted
                                     <p className="text-slate-400">{eventDescription}</p>
                                     </div>
                                 </div>
-                                    {/* <p className="text-slate-400" id={`details-${id}`} aria-hidden={true}>{eventDescription}</p> */}
                             </div>
                             <a href="#" className=" bg-indigo-500 rounded-md px-4 py-2 text-indigo-50 shadow-2xl shadow-indigo-200 dark:shdow-none text-center font-bold hover:shadow-none ring ring-offset-0 ring-indigo-500 focus:outline-none">Register</a>
                         </div>
