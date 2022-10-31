@@ -24,11 +24,16 @@ const Event = ({id, eventDescription, eventLocation, eventName, postedBy, posted
     const getSportsEmoji = (sportsType: string) => {
         return sportEmojis[sportsType];
     }
+    const  getRandomNumber = (min: number, max: number) => {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    const colors = ["blue", "amber", "pink", "rose", "indigo", "pink"];
+    const colorScheme = colors[id % colors.length];
 
 
     return (
         <article className="bg-white dark:bg-slate-800 shadow-xl shadow-slate-200 dar:shadow-slate-800 rounded-lg">
-                    <div className="p-3 shadow bg-indigo-500 text-indigo-50 uppercase grid place-items-center rounded-t-lg">
+                    <div className={`p-3 shadow bg-${colorScheme}-500 text-${colorScheme}-50 uppercase grid place-items-center rounded-t-lg`}>
                         <div className="text-sm">{eventDate.toDateString().substring(4,7)}</div>
                         <div className="text-2xl font-bold">{eventDate.getDate()}</div>
                         
@@ -59,7 +64,7 @@ const Event = ({id, eventDescription, eventLocation, eventName, postedBy, posted
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" className=" bg-indigo-500 rounded-md px-4 py-2 text-indigo-50 shadow-2xl shadow-indigo-200 dark:shdow-none text-center font-bold hover:shadow-none ring ring-offset-0 ring-indigo-500 focus:outline-none">Register</a>
+                            <a href="#" className={` bg-${colorScheme}-500 rounded-md px-4 py-2 text-${colorScheme}-50 shadow-2xl shadow-${colorScheme}-200 dark:shdow-none text-center font-bold hover:shadow-none ring ring-offset-0 ring-${colorScheme}-500 focus:outline-none`}>Register</a>
                         </div>
                 </article>
        
