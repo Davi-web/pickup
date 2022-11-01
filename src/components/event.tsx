@@ -10,8 +10,11 @@ type EventProp = {
     sportsType: string;
     
 }
+interface sportsType {
+    [key: string]: string;
+}
 const Event = ({id, eventDescription, eventLocation, eventName, postedBy, postedDate, eventDate, sportsType}: EventProp)=> {
-    const sportEmojis: any = {
+    const sportEmojis: sportsType = {
         "Basketball": "🏀",
         "Soccer": "⚽",
         "Tennis": "🎾",

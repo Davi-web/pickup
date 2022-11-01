@@ -3,53 +3,92 @@ import Image from "next/image";
 import Link from "next/link";
 import pickupLogo from "/public/favicon.ico";
 import {signIn, signOut, useSession} from "next-auth/react";
+import { useEffect } from "react";
 
 
 const Header: NextComponentType = () => {
 	const {data: session} = useSession();
 	console.log(session)
+	useEffect(() => {
+		const burger = document.querySelectorAll(".navbar-burger");
+		const menu = document.querySelectorAll(".nvabar-menu");
+		if (burger && menu && burger.length && menu.length) {
+			for(let i = 0; i < burger.length; i++) {
+				burger[i]?.addEventListener("click", () => {
+					for(let j = 0; j < menu.length; j++) {
+						menu[j]?.classList.toggle("hidden");
+					}
+				});
+			}
+		}
+
+		const close = document.querySelectorAll(".navbar-close");
+		if (close && close.length) {
+			for(let i = 0; i < close.length; i++) {
+				close[i]?.addEventListener("click", () => {
+					for(let j = 0; j < menu.length; j++) {
+						menu[j]?.classList.toggle("hidden");
+					}
+				});
+			}
+		}
+		const backdrop = document.querySelectorAll(".navbar-backdrop");
+		if (backdrop && backdrop.length) {
+			for(let i = 0; i < backdrop.length; i++) {
+				backdrop[i]?.addEventListener("click", () => {
+					for(let j = 0; j < menu.length; j++) {
+						menu[j]?.classList.toggle("hidden");
+					}
+				}
+				);
+			}
+		}
+
+	}, []);
+	
+	// }, [])
     // Burger menus
     // const width = window?.innerWidth || 100;
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
-        document.addEventListener('DomContentLoaded', function() {
-            const burger = document.querySelectorAll('.navbar-burger');
-            const menu = document.querySelectorAll('.navbar-menu');
+    // if (typeof window !== "undefined" && typeof document !== "undefined") {
+    //     document.addEventListener('DomContentLoaded', function() {
+    //         const burger = document.querySelectorAll('.navbar-burger');
+    //         const menu = document.querySelectorAll('.navbar-menu');
     
-            if (burger.length && menu.length) {
-                for (let i = 0; i < burger.length; i++) {
-                    burger[i]?.addEventListener('click', function() {
-                        for (let j = 0; j < menu.length; j++) {
-                            menu[j]?.classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
+    //         if (burger.length && menu.length) {
+    //             for (let i = 0; i < burger.length; i++) {
+    //                 burger[i]?.addEventListener('click', function() {
+    //                     for (let j = 0; j < menu.length; j++) {
+    //                         menu[j]?.classList.toggle('hidden');
+    //                     }
+    //                 });
+    //             }
+    //         }
     
-            // close
-            const close = document.querySelectorAll('.navbar-close');
-            const backdrop = document.querySelectorAll('.navbar-backdrop');
+    //         // close
+    //         const close = document.querySelectorAll('.navbar-close');
+    //         const backdrop = document.querySelectorAll('.navbar-backdrop');
     
-            if (close.length) {
-                for (let i = 0; i < close.length; i++) {
-                    close[i]?.addEventListener('click', function() {
-                        for (let j = 0; j < menu.length; j++) {
-                            menu[j]?.classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
+    //         if (close.length) {
+    //             for (let i = 0; i < close.length; i++) {
+    //                 close[i]?.addEventListener('click', function() {
+    //                     for (let j = 0; j < menu.length; j++) {
+    //                         menu[j]?.classList.toggle('hidden');
+    //                     }
+    //                 });
+    //             }
+    //         }
     
-            if (backdrop.length) {
-                for (let i = 0; i < backdrop.length; i++) {
-                    backdrop[i]?.addEventListener('click', function() {
-                        for (let j = 0; j < menu.length; j++) {
-                            menu[j]?.classList.toggle('hidden');
-                        }
-                    });
-                }
-            }
-        })
-    }
+    //         if (backdrop.length) {
+    //             for (let i = 0; i < backdrop.length; i++) {
+    //                 backdrop[i]?.addEventListener('click', function() {
+    //                     for (let j = 0; j < menu.length; j++) {
+    //                         menu[j]?.classList.toggle('hidden');
+    //                     }
+    //                 });
+    //             }
+    //         }
+    //     })
+    // }
     
     
    
@@ -76,7 +115,7 @@ return(
 			</button>
 		</div>
 		<ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-			<li><a className="text-sm text-gray-400 hover:text-gray-500" href="#">Event Schedule</a></li>
+			<li><a className="text-sm text-gray-400 hover:text-gray-500" href="/events/displayEvents">Event Schedule</a></li>
 			<li className="text-gray-300">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" className="w-4 h-4 current-fill" viewBox="0 0 24 24">
 					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
