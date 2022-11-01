@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -15,6 +15,7 @@ export default function EventCreation() {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [sportsType, setSportsType] = useState("");
+  const createdRef = useRef<HTMLDivElement>(null);
 
   const events = trpc.useMutation(["events.post-events"], {
     onSuccess: () => {
@@ -36,12 +37,19 @@ export default function EventCreation() {
         postedBy: "5",
         eventLocation: location,
         sportsType: sportsType
-    })
+    });
+    if (createdRef.current) {
+      createdRef.current.innerHTML = "Event Created!";
+    }
+
   }
 
   return (
     <div className='flex flex-col'>
-      <div className='flex justify-center pb-3'></div>
+      <div className='flex justify-center pb-3'>
+        <h1 className='text-3xl font-bold'>Create an event to play with your friends!</h1>
+      </div>
+      <div id="createdRef" ref={createdRef} className="flex justify-center"/>
 
       <form className='register'>
         <label htmlFor="Event Name"></label>
@@ -69,10 +77,11 @@ export default function EventCreation() {
       </form>
 
       <div className='flex justify-center'>
-        <LocalizationProvider dateAdapter={AdapterDayjs} className=" flex justify-center">
+        <LocalizationProvider dateAdapter={AdapterDayjs} className=" flex justify-center" >
           <Stack spacing={3} >
               <MobileDatePicker
               label="Event Time"
+              className="date"
               inputFormat="MM/DD/YYYY"
               value={value}
               onChange={handleChange}
@@ -81,6 +90,7 @@ export default function EventCreation() {
 
               <TimePicker
               label="Time"
+              className="time"
               value={value}
               onChange={handleChange}
               renderInput={(params) => <TextField {...params} />}
@@ -89,7 +99,7 @@ export default function EventCreation() {
         </LocalizationProvider>
       </div>
       <div className="flex justify-center pt-2">
-     <button onClick={onSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+     <button onClick={onSubmit} id="submitBtn" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </div>
     </div>
   );
