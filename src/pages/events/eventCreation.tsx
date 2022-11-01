@@ -29,7 +29,8 @@ export default function EventCreation() {
   };
 
   const onSubmit = () => {
-    events.mutate({
+    if (createdRef.current && location.length > 0 && eventName.length > 0) {
+      events.mutate({
         name: eventName,
         description: description,
         postedDate: new Date(Date.now()),
@@ -37,18 +38,19 @@ export default function EventCreation() {
         postedBy: "5",
         eventLocation: location,
         sportsType: sportsType
-    });
-    if (createdRef.current) {
-      createdRef.current.innerHTML = "Event Created!";
-    }
+      });
 
+      createdRef.current.innerHTML = "Event Created!";
+    } else if (createdRef.current && (location.length == 0 || eventName.length == 0)) {
+        createdRef.current.innerHTML = "Please fill in required fields.";
+    }
   }
 
   return (
   <div className='register'>
   <h1>Create an Event!</h1>
-  <div ref={createdRef} className='text-purple-600 text-lg flex justify-center'/>
-    <form>
+  <div ref={createdRef} id="createdRef" className='text-purple-600 text-lg flex justify-center'/>
+    <form >
       <label htmlFor="Event Name"></label>
       <input type="text" name="eventName" placeholder="Enter event name" id="eventName" value={eventName} onChange={e=>setEventName(e.target.value)} required/>
 
@@ -56,7 +58,7 @@ export default function EventCreation() {
       <input type="text" name="eventDescription" placeholder="Enter event description" id="description" value={description} onChange={e=>setDescription(e.target.value)}/>
 
       <label htmlFor="Event Location"></label>
-      <input type="text" name="eventLocation" placeholder="Enter event location" id="location" value={location} onChange={e=>setLocation(e.target.value)}/>
+      <input type="text" name="eventLocation" placeholder="Enter event location" id="location" value={location} onChange={e=>setLocation(e.target.value)} required/>
 
       <label htmlFor="sportsType" className="block mb-2 text-sm font-medium text-gray-900">Select sport type</label>
         <select id="sportsType" onChange={e => setSportsType(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-8">
@@ -94,7 +96,7 @@ export default function EventCreation() {
     </div>
 
     <div className="flex justify-center pt-2">
-      <button onClick={onSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+      <button onClick={onSubmit} id="submitBtn" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </div>
   </div>
   );
