@@ -48,7 +48,7 @@ export default function EventCreation() {
   return (
   <div className='register'>
   <h1>Create an Event!</h1>
-  <div ref={createdRef} className='text-purple-600 text-lg flex justify-center'/>
+  <div ref={createdRef} id="createdRef" className='text-purple-600 text-lg flex justify-center'/>
     <form>
       <label htmlFor="Event Name"></label>
       <input type="text" name="eventName" placeholder="Enter event name" id="eventName" value={eventName} onChange={e=>setEventName(e.target.value)} required/>
@@ -95,7 +95,7 @@ export default function EventCreation() {
     </div>
 
     <div className="flex justify-center pt-2">
-      <button onClick={onSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+      <button onClick={onSubmit} id="submitBtn" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </div>
   </div>
   );

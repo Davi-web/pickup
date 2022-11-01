@@ -1,35 +1,41 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { trpc } from "../utils/trpc";
 
 const Rsvp = () => {
     const router = useRouter();
-    const [username ,setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const user = trpc.useQuery(["example.get-user", {id:username}]);
+    const [email ,setEmail] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const createdRef = useRef<HTMLDivElement>(null);
+    // const user = trpc.useQuery(["example.get-user", {id:username}]);
 
     const checkUser = () => {
-        setUsername((document.getElementById("username") as HTMLInputElement).value);
-        console.log(user);
-        if(user.data?.password === password){
-            router.push(`/profile/${username}`);
+       if(email.length > 0 && lastName.length > 0 && firstName.length > 0){
+           router.push("/events/displayEvents");
+       } else {
+            if(createdRef.current){
+                createdRef.current.innerHTML = "Please fill in required fields.";
+            }
         }
+
     }
    
     return (
         
         <div className="login">
         <h1>RSVP</h1>
+        <div ref={createdRef} id="createdRef" className='text-purple-600 text-lg flex justify-center'/>
         <form action="/api/login" method="POST" onSubmit={e => e.preventDefault()}>
 
             <label htmlFor="email"></label>
-            <input type="text" name="email" placeholder="Enter Email"id="email" required/>
+            <input type="text" name="email" placeholder="Enter Email" id="email" onChange={e => setEmail(e.target.value)} required/>
 
             <label htmlFor="first name"></label>
-            <input type="text" name="first name" placeholder="Enter First Name" id="first name" required/>
+            <input type="text" name="first name" placeholder="Enter First Name" id="first_name" onChange={e =>setFirstName(e.target.value)} required/>
 
             <label htmlFor="last name"></label>
-            <input type="text" name="last name" placeholder="Enter Last Name" id="last name" required/>
+            <input type="text" name="last name" placeholder="Enter Last Name" id="last_name" onChange={e => setLastName(e.target.value)} required/>
 
             <button id="submitBtn" onClick={checkUser}>Register</button>
         </form>
