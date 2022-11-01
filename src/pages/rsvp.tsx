@@ -17,7 +17,6 @@ const Rsvp = () => {
     }
    
     return (
-        
         <div className="login">
         <h1>RSVP</h1>
         <form action="/api/login" method="POST" onSubmit={e => e.preventDefault()}>
