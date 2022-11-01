@@ -35,7 +35,7 @@ const Event = ({id, eventDescription, eventLocation, eventName, postedBy, posted
 
 
     return (
-        <article className="bg-white dark:bg-slate-800 shadow-xl shadow-slate-200 dar:shadow-slate-800 rounded-lg">
+        <article className="bg-white dark:bg-slate-800 shadow-xl shadow-slate-200 dar:shadow-slate-800 rounded-lg" id={`event-${id}`}>
                     <div className={`p-3 shadow bg-${colorScheme}-500 text-${colorScheme}-50 uppercase grid place-items-center rounded-t-lg`}>
                         <div className="text-sm">{eventDate.toDateString().substring(4,7)}</div>
                         <div className="text-2xl font-bold">{eventDate.getDate()}</div>
@@ -59,7 +59,7 @@ const Event = ({id, eventDescription, eventLocation, eventName, postedBy, posted
                                     }}>
                                     <p className="pointer-events-none">See details</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 pointer-events-none transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                     </svg>
                                     </button>
                                     <div className="grid gap-1 hidden" id={`details-${id}`} aria-labelledby={`btn-${id}`}>

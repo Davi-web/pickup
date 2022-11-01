@@ -32,7 +32,21 @@ describe("post events", () => {
     cy.get("#submitBtn").click();
     cy.get("#createdRef").should("have.text", "Event Created!");
   });
-  it("Display Data", () => {
-    cy.visit("localhost:3000/displayEvents");
+  it("Display Data with different slider inputs", () => {
+    cy.visit("localhost:3000/events/displayEvents");
+    cy.get("#sportsType").select("Basketball");
+    cy.get("article").should("have.length", 10);
+    cy.get('input[type="range"]')
+      .should("have.value", 10)
+      .then(($el) => $el[0].stepUp(-5))
+      .trigger("change")
+      .should("have.value", 5);
+    cy.get("article").should("have.length", 5);
+    cy.get('input[type="range"]')
+      .should("have.value", 5)
+      .then(($el) => $el[0].stepUp(10))
+      .trigger("change")
+      .should("have.value", 15);
+    cy.get("article").should("have.length", 15);
   });
 });

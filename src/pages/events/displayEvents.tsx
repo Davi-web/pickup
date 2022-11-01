@@ -29,7 +29,7 @@ const DisplayEvent = () => {
                 <option value="Other">Other</option>
             </select>
             <label htmlFor="eventAmt">{inputSlider} {inputSlider === '1' ? "Event": "Events"}</label>
-            <input type={"range"} min={1} max={20} value={inputSlider} onChange={(e) => setInputSlider(e.target.value)} className="accent-blue-600 cursor-grab"></input>
+            <input id="slider" type={"range"} min={1} max={20} value={inputSlider} onChange={(e) => setInputSlider(e.target.value)} className="accent-blue-600 cursor-grab"></input>
         </header>
         <main className="max-w-6xl w-full mx-auto">
             <section className="grid grid-cols-cards gap-4 md:gap-6 lg:gap-8 items-center" id="events-container">
