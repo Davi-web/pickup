@@ -28,7 +28,11 @@ export default function EventCreation() {
   };
 
   const onSubmit = () => {
-    if (createdRef.current && location.length > 0 && eventName.length > 0) {
+    if (createdRef.current && (location.length == 0 || eventName.length == 0 || description.length == 0)) {
+        createdRef.current.innerHTML = "Please fill in all fields."; 
+    } else if (createdRef.current && sportsType.length == 0) {
+        createdRef.current.innerHTML = "Please choose your sport."; 
+    } else {
       events.mutate({
         name: eventName,
         description: description,
@@ -38,10 +42,7 @@ export default function EventCreation() {
         eventLocation: location,
         sportsType: sportsType
       });
-
       createdRef.current.innerHTML = "Event Created!";
-    } else if (createdRef.current && (location.length == 0 || eventName.length == 0)) {
-        createdRef.current.innerHTML = "Please fill in required fields.";
     }
   }
 

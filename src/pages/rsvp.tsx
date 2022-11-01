@@ -22,7 +22,6 @@ const Rsvp = () => {
     }
    
     return (
-        
         <div className="login">
         <h1>RSVP</h1>
         <div ref={createdRef} id="createdRef" className='text-purple-600 text-lg flex justify-center'/>
