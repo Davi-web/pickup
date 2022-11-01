@@ -40,57 +40,56 @@ export default function EventCreation() {
   }
 
   return (
-    <div className='flex flex-col'>
-      <div className='flex justify-center pb-3'></div>
+  <div className='register'>
+  <h1>Create an Event!</h1>
+    <form>
+      <label htmlFor="Event Name"></label>
+      <input type="text" name="eventName" placeholder="Enter event name" id="eventName" value={eventName} onChange={e=>setEventName(e.target.value)} required/>
 
-      <form className='register'>
-        <label htmlFor="Event Name"></label>
-        <input type="text" name="eventName" placeholder="Enter event name" id="eventName" value={eventName} onChange={e=>setEventName(e.target.value)} required/>
+      <label htmlFor="Event Description"></label>
+      <input type="text" name="eventDescription" placeholder="Enter event description" id="description" value={description} onChange={e=>setDescription(e.target.value)}/>
 
-        <label htmlFor="Event Description"></label>
-        <input type="text" name="eventDescription" placeholder="Enter event description" id="description" value={description} onChange={e=>setDescription(e.target.value)}/>
+      <label htmlFor="Event Location"></label>
+      <input type="text" name="eventLocation" placeholder="Enter event location" id="location" value={location} onChange={e=>setLocation(e.target.value)}/>
 
-        <label htmlFor="Event Location"></label>
-        <input type="text" name="eventLocation" placeholder="Enter event location" id="location" value={location} onChange={e=>setLocation(e.target.value)}/>
+      <label htmlFor="sportsType" className="block mb-2 text-sm font-medium text-gray-900">Select sport type</label>
+        <select id="sportsType" onChange={e => setSportsType(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-8">
+          <option value="">Choose a sport</option>
+          <option value="Basketball">Basketball</option>
+          <option value="Soccer">Soccer</option>
+          <option value="Tennis">Tennis</option>
+          <option value="Volleyball">Volleyball</option>
+          <option value="Spikeball">Spikeball</option>
+          <option value="Frisbee">Frisbee</option>
+          <option value="Golf">Golf</option>
+          <option value="Other">Other</option>
+        </select>
+    </form>
 
-        <label htmlFor="sportsType" className="block mb-2 text-sm font-medium text-gray-900">Select sport type</label>
-          <select id="sportsType" onChange={e => setSportsType(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-            <option value="">Choose a sport</option>
-            <option value="Basketball">Basketball</option>
-            <option value="Soccer">Soccer</option>
-            <option value="Tennis">Tennis</option>
-            <option value="Volleyball">Volleyball</option>
-            <option value="Spikeball">Spikeball</option>
-            <option value="Frisbee">Frisbee</option>
-            <option value="Golf">Golf</option>
-            <option value="Other">Other</option>
-          </select>
+    <div className='flex justify-center'>
+      <LocalizationProvider dateAdapter={AdapterDayjs} className=" flex justify-center">
+        <Stack spacing={3} >
+            <MobileDatePicker
+            label="Event Date"
+            inputFormat="MM/DD/YYYY"
+            value={value}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+            />
 
-      </form>
-
-      <div className='flex justify-center'>
-        <LocalizationProvider dateAdapter={AdapterDayjs} className=" flex justify-center">
-          <Stack spacing={3} >
-              <MobileDatePicker
-              label="Event Time"
-              inputFormat="MM/DD/YYYY"
-              value={value}
-              onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
-              />
-
-              <TimePicker
-              label="Time"
-              value={value}
-              onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
-              />
-          </Stack>
-        </LocalizationProvider>
-      </div>
-      <div className="flex justify-center pt-2">
-     <button onClick={onSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+            <TimePicker
+            label="Time"
+            value={value}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+            />
+        </Stack>
+      </LocalizationProvider>
     </div>
+
+    <div className="flex justify-center pt-2">
+      <button onClick={onSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </div>
+  </div>
   );
 }
