@@ -40,7 +40,7 @@ const Home: NextPage = () => {
           <Card
             name="Get started"
             description="Find friends at Vandy to start a pickup game with a click of a button"
-            documentation="/home"
+            documentation="/events/displayEvents"
           />
           <Card
             name="Join a Sports Group Chat"
@@ -50,7 +50,7 @@ const Home: NextPage = () => {
           <Card
             name="Browse event postings"
             description="Within each groupchat, there is a feature to find events to meet up with your peers. You can add yourself to any event and DM other group members who are going to show up."
-            documentation="/events"
+            documentation="/events/eventCreation"
           />
           <Card
             name="Meetup with other vandy students!"

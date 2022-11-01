@@ -5,10 +5,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { trpc } from '../utils/trpc';
+import { trpc } from '../../utils/trpc';
 // import moment from 'moment-timezone';
  
-export default function Events() {
+export default function EventCreation() {
 
   const [value, setValue] = useState(Date.now());
   const [eventName, setEventName] = useState("");

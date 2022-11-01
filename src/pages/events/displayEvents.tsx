@@ -1,9 +1,9 @@
-import { trpc } from "../utils/trpc";
-import Event from "../components/event";
+import { trpc } from "../../utils/trpc";
+import Event from "../../components/event";
 import { useState } from "react";
 import Link from "next/link";
 
-const Home = () => {
+const DisplayEvent = () => {
     const [inputSlider, setInputSlider] = useState("10");
     const [sportsType, setSportsType] = useState("");
     const events = trpc.useQuery(["events.get-all-events"]);
@@ -74,4 +74,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default DisplayEvent;
