@@ -1,14 +1,15 @@
 import Talk from 'talkjs';
 import { useEffect, useState, useRef } from 'react';
 
-function MyChatComponent() {
+export const Chat = ()=>  {
   const chatboxEl = useRef();
 
   // wait for TalkJS to load
   const [talkLoaded, markTalkLoaded] = useState(false);
-  Talk.ready.then(() => markTalkLoaded(true));
 
   useEffect(() => {
+    Talk.ready.then(() => markTalkLoaded(true));
+
     if (talkLoaded) {
       const currentUser = new Talk.User({
         id: '1',
@@ -40,11 +41,12 @@ function MyChatComponent() {
 
       const chatbox = session.createChatbox();
       chatbox.select(conversation);
-      chatbox.mount(chatboxEl);
+      chatbox.mount(chatboxEl.current);
 
       return () => session.destroy();
     }
   }, [talkLoaded]);
 
-  return <div ref={chatboxEl} />;
+  return (
+    <div className="talk-js-chatbox flex-child" ref={(chatboxEl)} />);
 }

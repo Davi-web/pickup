@@ -6,7 +6,7 @@ import Link from "next/link";
 const DisplayEvent = () => {
     const [inputSlider, setInputSlider] = useState("10");
     const [sportsType, setSportsType] = useState("");
-    const events = trpc.useQuery(["events.get-all-events"]);
+    //fetch events by sports type and slider value
     const eventsBySportsType = trpc.useQuery(["events.get-event-by-sports-type", {type: sportsType, size: parseInt(inputSlider)}]);
     
 
@@ -33,6 +33,7 @@ const DisplayEvent = () => {
         </header>
         <main className="max-w-6xl w-full mx-auto">
             <section className="grid grid-cols-cards gap-4 md:gap-6 lg:gap-8 items-center" id="events-container">
+                
                 {eventsBySportsType.data?.map((event, id) => (
                     <Event key={event.id}  eventName={event.eventName}
                     id={id}
