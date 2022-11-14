@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 
             <div className="flex flex-row">
               <div className="text-purple-300 font-mono w-1/2 pr-10">Welcome</div>
-              <div className="pl-10 w-1/2">{session?.user?.name?.split(" ")[0]}</div>
+              <div className="pl-10 w-1/2 font-bold bg-clip-text text-transparent bg-gradient-to-br pb-4 md:pb-6 from-blue-500 to-violet-700 dark:from-blue-400">{session?.user?.name?.split(" ")[0]}</div>
             </div>
            
           ): (
