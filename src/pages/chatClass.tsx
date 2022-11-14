@@ -11,7 +11,7 @@ const Chat = () => {
     const { data: session } = useSession();
     const [message, setMessage] = useState("");
     const [messages, setMessages] = useState<Message[]>([]);
-    const [socket, setSocket] = useState<SocketIOClient.Socket>();
+    const [socket, setSocket] = useState<any>();
     const [username, setUsername] = useState("");
     const [chosenUsername, setChosenUsername] = useState(session?.user?.name);
     console.log(session);
