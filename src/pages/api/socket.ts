@@ -21,20 +21,17 @@ interface ServerToClientEvents {
     age: number;
   }
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(req: NextApiRequest, res: any) {
     if (res.socket.server.io) {
         console.log("Already set up");
         res.end();
         return;
       }
     
-      const io = new Server<ClientToServerEvents,
-      ServerToClientEvents,
-      InterServerEvents,
-      SocketData>(res.socket.server);
+      const io = new Server<any>(res.socket.server);
       res.socket.server.io = io;
     
-      const onConnection = (socket) => {
+      const onConnection = (socket: any) => {
         messageHandler(io, socket);
       };
     
