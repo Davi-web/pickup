@@ -48,5 +48,5 @@ export const Chat = ()=>  {
   }, [talkLoaded]);
 
   return (
-    <div className="talk-js-chatbox flex-child" ref={(chatboxEl)} />);
+    <div className="talk-js-chatbox flex-child h-screen" ref={(chatboxEl)} />);
 }
