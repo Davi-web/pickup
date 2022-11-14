@@ -102,7 +102,7 @@ return(
 			</Link>
 		): (
 			<Link className="text-3xl font-bold leading-none cursor-pointer" href="/">
-				<img height={40} width={40} src={session?.user?.image} alt={""} style={{borderRadius: "50%"}} referrerPolicy="no-referrer"/>
+				<img height={40} width={40} src={session.user.image!} alt={""} style={{borderRadius: "50%"}} referrerPolicy="no-referrer"/>
 			</Link>
 		)}
 		

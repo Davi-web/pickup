@@ -41,10 +41,11 @@ const Chat = () => {
     const sendMessage = () => {
         if (!socket) return;
         socket.emit("createdMessage", { author: chosenUsername, message });
-        setMessages((prev) => [...prev, { author: chosenUsername, message }]);
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        setMessages((prev) => [...prev, { author: chosenUsername!, message }]);
         setMessage("");
     };
-    const handleKeypress = (e) => {
+    const handleKeypress = (e: any) => {
         //it triggers by pressing the enter key
         if (e.keyCode === 13) {
           if (message) {
