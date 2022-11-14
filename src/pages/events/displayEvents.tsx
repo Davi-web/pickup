@@ -9,7 +9,7 @@ const DisplayEvent = () => {
     //fetch events by sports type and slider value
     const eventsBySportsType = trpc.useQuery(["events.get-event-by-sports-type", {type: sportsType, size: parseInt(inputSlider)}]);
     
-
+    
 
 
     return(
