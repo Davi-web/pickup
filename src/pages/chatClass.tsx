@@ -18,13 +18,13 @@ const Chat = () => {
 
     useEffect(() => {
         const socket = io("https://pickup-davi-web.vercel.app");
-        fetch("/api/socket", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ username }),
-            });
+        // fetch("/api/socket", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         },
+        //         body: JSON.stringify({ username }),
+        //     });
         setSocket(socket);
         return () => {
             socket.close();
