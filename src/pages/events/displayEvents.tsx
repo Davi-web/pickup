@@ -1,7 +1,6 @@
 import { trpc } from "../../utils/trpc";
 import Event from "../../components/event";
 import { useState } from "react";
-import Link from "next/link";
 
 const DisplayEvent = () => {
     const [inputSlider, setInputSlider] = useState("10");
