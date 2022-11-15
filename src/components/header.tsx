@@ -92,7 +92,7 @@ const Header: NextComponentType = () => {
     
 	const SignIn = async () => {
 		try {
-			 await signIn("google");
+			 await signIn();
 		} catch (error) {
 			console.log(error);
 		}
