@@ -17,7 +17,7 @@ const Chat = () => {
     console.log(session);
 
     useEffect(() => {
-        const socket = io("https://pickup-davi-web.vercel.app/chatClass");
+        const socket = io("https://pickup-davi-web.vercel.app/api/socket");
         // fetch("/api/socket", {
         //     method: "POST",
         //     headers: {
