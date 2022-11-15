@@ -90,7 +90,20 @@ const Header: NextComponentType = () => {
     //     })
     // }
     
-    
+	const SignIn = async () => {
+		try {
+			 await signIn("google");
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	const SignOut = async() => {
+		try {
+			await signOut();
+		} catch (error) {
+			console.log(error);
+		}
+	}
    
 
 return(
@@ -131,12 +144,12 @@ return(
 		
 		</ul>
 		{session?.user === undefined && (
-			<div className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200 cursor-pointer" onClick={()=> signIn()}>
+			<div className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200 cursor-pointer" onClick={SignIn}>
             	Sign In
         	</div>
 		)}
 		{session?.user !== undefined &&(
-			<div className="hidden lg:inline-block py-2 px-6 bg-purple-500 hover:bg-purple-600 text-sm text-white font-bold rounded-xl transition duration-200 cursor-pointer" onClick={()=> signOut()}>
+			<div className="hidden lg:inline-block py-2 px-6 bg-purple-500 hover:bg-purple-600 text-sm text-white font-bold rounded-xl transition duration-200 cursor-pointer" onClick={SignOut}>
             	Sign Out
         	</div>
 		)}
