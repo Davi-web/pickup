@@ -42,7 +42,9 @@ export default function EventCreation() {
         eventLocation: location,
         sportsType: sportsType
       });
-      createdRef.current.innerHTML = "Event Created!";
+      if (createdRef.current) {
+        createdRef.current.innerHTML = "Event created!";
+      }
     }
   }
 
