@@ -16,27 +16,27 @@ const Chat = () => {
     const [chosenUsername, setChosenUsername] = useState(session?.user?.name);
     console.log(session);
 
-    useEffect(() => {
-        const socket = io("http://localhost:3000");
-        fetch("/api/socket", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ username }),
-            });
-        setSocket(socket);
-        return () => {
-            socket.close();
-        };
-    }, [username]);
+    // useEffect(() => {
+    //     const socket = io("http://localhost:3000");
+    //     fetch("/api/socket", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({ username }),
+    //         });
+    //     setSocket(socket);
+    //     return () => {
+    //         socket.close();
+    //     };
+    // }, [username]);
 
-    useEffect(() => {
-        if (!socket) return;
-        socket.on("newIncomingMessage", (msg: Message) => {
-            setMessages((prev) => [...prev, msg]);
-        });
-    }, [socket]);
+    // useEffect(() => {
+    //     if (!socket) return;
+    //     socket.on("newIncomingMessage", (msg: Message) => {
+    //         setMessages((prev) => [...prev, msg]);
+    //     });
+    // }, [socket]);
 
     const sendMessage = () => {
         if (!socket) return;
