@@ -14,22 +14,22 @@ const Chat = () => {
     const [socket, setSocket] = useState<any>();
     const [username, setUsername] = useState("");
     const [chosenUsername, setChosenUsername] = useState(session?.user?.name);
-    console.log(session);
 
     useEffect(() => {
-        const socket = io("https://pickup-davi-web.vercel.app/api/socket");
-        // fetch("/api/socket", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //         },
-        //         body: JSON.stringify({ username }),
-        //     });
+        const socket = io("ws://localhost:3000");
+        
+        fetch("/api/socket", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ chosenUsername }),
+            });
         setSocket(socket);
-        return () => {
-            socket.close();
-        };
-    }, [username]);
+        // return () => {
+        //     socket.close();
+        // };
+    }, [chosenUsername]);
 
     useEffect(() => {
         if (!socket) return;
@@ -42,7 +42,7 @@ const Chat = () => {
         if (!socket) return;
         socket.emit("createdMessage", { author: chosenUsername, message });
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        setMessages((prev) => [...prev, { author: chosenUsername!, message }]);
+        // setMessages((prev) => [...prev, { author: chosenUsername!, message }]);
         setMessage("");
     };
     const handleKeypress = (e: any) => {
@@ -55,7 +55,7 @@ const Chat = () => {
       };
 
     return (
-    <div className="flex items-center p-4 mx-auto min-h-screen justify-center bg-purple-500">
+    <div className="flex items-center p-4 mx-auto min-h-screen justify-center bg-purple-300">
         <main className="gap-4 flex flex-col items-center justify-center w-full h-full">
          {!chosenUsername ? (
           <>
@@ -105,7 +105,7 @@ const Chat = () => {
                   onKeyUp={handleKeypress}
                   onChange={(e) => setMessage(e.target.value)}
                 />
-                <div className="border-l border-gray-300 flex justify-center items-center  rounded-br-md group hover:bg-purple-500 transition-all">
+                <div className="border-l border-gray-300 flex justify-center items-center  rounded-br-md group hover:bg-purple-300 transition-all">
                   <button
                     className="group-hover:text-white px-3 h-full"
                     onClick={() => {
