@@ -23,6 +23,5 @@ export async function middleware(req: NextApiRequest, res: NextApiResponse) {
 }
 
 
-export const config = {
-   matcher: '/chatClass'
-};
+//allow middleware to be used for all routes
+export default middleware;
