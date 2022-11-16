@@ -16,7 +16,7 @@ const Chat = () => {
     const [chosenUsername, setChosenUsername] = useState(session?.user?.name);
 
     useEffect(() => {
-        const socket = io("ws://https://pickup-davi-web.vercel.app/");
+        const socket = io("ws://pickup-davi-web.vercel.app/");
         
         fetch("/api/socket", {
             method: "POST",
