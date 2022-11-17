@@ -15,6 +15,7 @@ export const serverSchema = z.object({
   GITHUB_CLIENT_ID: z.string(),
   GITHUB_CLIENT_SECRET: z.string(),
   JWT_SECRET: z.string(),
+  GOOGLE_API_KEY: z.string(),
 });
 
 /**
@@ -24,6 +25,8 @@ export const serverSchema = z.object({
  */
 export const clientSchema = z.object({
   // NEXT_PUBLIC_BAR: z.string(),
+  // NEXT_PUBLIC_GOOGLE_CLIENT_ID: z.string(),
+  // NEXT_PUBLIC_GOOGLE_API_KEY: z.string(),
 });
 
 /**
@@ -34,4 +37,6 @@ export const clientSchema = z.object({
  */
 export const clientEnv = {
   // NEXT_PUBLIC_BAR: process.env.NEXT_PUBLIC_BAR,
+  // NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+  // NEXT_PUBLIC_GOOGLE_API_KEY: process.env.GOOGLE_PUBLIC_GOOGLE_API_KEY,
 };

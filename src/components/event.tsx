@@ -1,6 +1,19 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import ApiCalendar from "react-google-calendar-api";
+// import {env} from "../env/server.mjs"
+const config = {
+    "clientId": "443757305938-g2ao75eap2acsn17ilf93ftratr5nq9f.apps.googleusercontent.com",
+    "apiKey": "AIzaSyA6P7jaozY0eYxBc4-wOHt87XiXI6dosfI",
+    "scope": "https://www.googleapis.com/auth/calendar",
+    "discoveryDocs": [
+      "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+    ]
+  }
+
+
+const apiCalender = new ApiCalendar(config);
 
 type EventProp = {
     id: number,
@@ -38,6 +51,57 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
     const colors = ["blue", "amber", "pink", "rose", "indigo", "pink"];
     const colorScheme = colors[id % colors.length];
     const [modal, setModal] = useState(false);
+
+    const createEvent = async() => {
+        try {
+            // await apiCalender.handleAuthClick();
+            // create event at a certain date
+            // const result = await apiCalender.createEventFromNow({
+            //     time: 60,
+            //     summary: eventName,
+            //     description: eventDescription,
+
+            // });
+            const res = await apiCalender.createEvent({
+                start: {
+                    dateTime: eventDate.toISOString(),
+                    timeZone: "America/Los_Angeles"
+                },
+                end: {
+                    dateTime: eventDate.toISOString(),
+                    timeZone: "America/Los_Angeles"
+                },
+                // summary: eventName,
+                // description: eventDescription,
+                // location: eventLocation,
+            }, );
+            //get calendar events id and update it
+
+            const eventId = res.result.id;
+            const update = await apiCalender.updateEvent({
+                summary: eventName,
+                description: eventDescription,
+                location: eventLocation,
+                event: {
+                    start:{
+                        dateTime: eventDate.toDateString(),
+                        timeZone: "America/Los_Angeles"
+                    },
+                    end: {
+                        dateTime: eventDate.toDateString(),
+                        timeZone: "America/Los_Angeles",
+                    }
+                }
+            }, eventId);
+
+            console.log(update);
+            setModal(false);
+        } catch (err) {
+            console.log(err);
+        }
+       
+    }
+    
 
 
     return (
@@ -117,7 +181,7 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setModal(false)}
+                    onClick={createEvent}
                   >
                     Add to Calender
                   </button>
