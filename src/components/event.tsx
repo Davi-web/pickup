@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ApiCalendar from "react-google-calendar-api";
 import {env} from "../env/server.mjs";
 const config = {
@@ -51,17 +51,19 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
     const colors = ["blue", "amber", "pink", "rose", "indigo", "pink"];
     const colorScheme = colors[id % colors.length];
     const [modal, setModal] = useState(false);
+    
+    useEffect(() => {
+        //sign in to google calendar
+        apiCalender.handleAuthClick();
+    },[])
+
+
+
+
 
     const createEvent = async() => {
         try {
-            await apiCalender.handleAuthClick();
-            // create event at a certain date
-            // const result = await apiCalender.createEventFromNow({
-            //     time: 60,
-            //     summary: eventName,
-            //     description: eventDescription,
-
-            // });
+           
             const res = await apiCalender.createEvent({
                 start: {
                     dateTime: eventDate.toISOString(),
@@ -94,9 +96,8 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
                 }
             }, eventId);
             console.log(update);
-
-            // console.log(update);
             setModal(false);
+            
         } catch (err) {
             console.log(err);
         }
