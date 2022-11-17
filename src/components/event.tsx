@@ -168,7 +168,7 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    {eventDescription}
+                    {eventDescription} at {eventLocation} on {eventDate.toLocaleDateString()}
                   </p>
                 </div>
                 {/*footer*/}
