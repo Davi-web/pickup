@@ -36,6 +36,7 @@ const DisplayEvent = () => {
                 {eventsBySportsType.data?.map((event, id) => (
                     <Event key={event.id}  eventName={event.eventName}
                     id={id}
+                    eventId={event.id}
                     eventDescription={event.eventDescription? event.eventDescription : "No description"}
                     eventTime={event.eventTime}
                     eventLocation={event.eventLocation? event.eventLocation : "No location"}

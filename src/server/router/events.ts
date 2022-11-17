@@ -9,6 +9,18 @@ export const eventsRouter = createRouter()
       return await ctx.prisma.events.findMany();
     }
   })
+  .query("get-event-by-id", {
+    input: z.object({
+      id: z.string().optional(),
+    }),
+    async resolve({ input, ctx }) {
+      return await ctx.prisma.events.findUnique({
+        where: {
+          id: input.id
+        },
+      });
+    }
+  })
   .query("get-event-by-sports-type", {
     input: z.object({
       type: z.string(),
