@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import ApiCalendar from "react-google-calendar-api";
-// import {env} from "../env/server.mjs"
+import {env} from "../env/server.mjs";
 const config = {
     "clientId": "443757305938-g2ao75eap2acsn17ilf93ftratr5nq9f.apps.googleusercontent.com",
     "apiKey": "AIzaSyA6P7jaozY0eYxBc4-wOHt87XiXI6dosfI",
@@ -54,7 +54,7 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
 
     const createEvent = async() => {
         try {
-            // await apiCalender.handleAuthClick();
+            await apiCalender.handleAuthClick();
             // create event at a certain date
             // const result = await apiCalender.createEventFromNow({
             //     time: 60,
@@ -71,11 +71,11 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
                     dateTime: eventDate.toISOString(),
                     timeZone: "America/Los_Angeles"
                 },
-                // summary: eventName,
-                // description: eventDescription,
-                // location: eventLocation,
+                
             }, );
+            console.log(res);
             //get calendar events id and update it
+
 
             const eventId = res.result.id;
             const update = await apiCalender.updateEvent({
@@ -93,8 +93,9 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
                     }
                 }
             }, eventId);
-
             console.log(update);
+
+            // console.log(update);
             setModal(false);
         } catch (err) {
             console.log(err);
