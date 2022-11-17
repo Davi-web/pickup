@@ -15,28 +15,28 @@ const Chat = () => {
     const [username, setUsername] = useState("");
     const [chosenUsername, setChosenUsername] = useState(session?.user?.name);
 
-    useEffect(() => {
-        const socket = io("ws://pickup-davi-web.vercel.app/");
+    // useEffect(() => {
+    //     const socket = io("ws://https://pickup-davi-web.vercel.app/");
         
-        fetch("/api/socket", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ chosenUsername }),
-            });
-        setSocket(socket);
-        // return () => {
-        //     socket.close();
-        // };
-    }, [chosenUsername]);
+    //     fetch("/api/socket", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({ chosenUsername }),
+    //         });
+    //     setSocket(socket);
+    //     // return () => {
+    //     //     socket.close();
+    //     // };
+    // }, [chosenUsername]);
 
-    useEffect(() => {
-        if (!socket) return;
-        socket.on("newIncomingMessage", (msg: Message) => {
-            setMessages((prev) => [...prev, msg]);
-        });
-    }, [socket]);
+    // useEffect(() => {
+    //     if (!socket) return;
+    //     socket.on("newIncomingMessage", (msg: Message) => {
+    //         setMessages((prev) => [...prev, msg]);
+    //     });
+    // }, [socket]);
 
     const sendMessage = () => {
         if (!socket) return;

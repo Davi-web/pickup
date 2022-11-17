@@ -1,16 +1,6 @@
 import { useRouter } from "next/router";
 import { trpc } from "../../utils/trpc";
-import ApiCalendar from "react-google-calendar-api";
-import { env } from "process";
-const config: any = {
-    "clientId": env.GOOGLE_CLIENT_ID,
-    "apiKey": env.GOOGLE_API_KEY,
-    "scope": "https://www.googleapis.com/auth/calendar",
-    "discoveryDocs": ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-}
 
-
-const apiCalender = new ApiCalendar(config);
 const Event = () => {
     const router = useRouter();
     const { event } = router.query;
