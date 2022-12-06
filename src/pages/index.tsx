@@ -10,12 +10,7 @@ import { useEffect } from "react";
 const Home: NextPage = () => {
   // const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
   const { data: session, status } = useSession();
-  useEffect(()=> {
-    if(status !== "loading" && status !== "authenticated") {
-      signIn();
-    }
-
-  },[status])
+ 
 
  
   return (
@@ -56,6 +51,9 @@ const Home: NextPage = () => {
         </div>
         <div className="flex items-center w-auto justify-center mt-8 px-8 py-4 text-white text-xl border-purple-600 border-4 rounded-full bg-purple-600 duration-500 motion-safe:hover:scale-105"
         onClick={()=>{
+          if(status !== "loading" && status !== "authenticated") {
+            signIn();
+          }
           window.location.href = `https://pickup-chat-chi.vercel.app?username=${session?.user?.email}&secret=${session?.user?.name}`;
         }}>
             <p>Are you ready to pick up sports you always wanted?</p>
