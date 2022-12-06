@@ -1,10 +1,11 @@
-import {useRef, useState} from 'react';
+import {useRef, useState, useEffect} from 'react';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
+import { useSession, signIn, signOut } from "next-auth/react"
 import { trpc } from '../../utils/trpc';
 import Header from "../../components/header";
 
@@ -17,6 +18,13 @@ export default function EventCreation() {
   const [location, setLocation] = useState("");
   const [sportsType, setSportsType] = useState("");
   const createdRef = useRef<HTMLDivElement>(null);
+  const { data: session, status } = useSession();
+  useEffect(()=> {
+    if(status !== "loading" && status !== "authenticated") {
+      signIn();
+    }
+
+  },[status])
 
   const events = trpc.useMutation(["events.post-events"], {
     onSuccess: () => {

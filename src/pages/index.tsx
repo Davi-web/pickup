@@ -9,12 +9,13 @@ import { useEffect } from "react";
 
 const Home: NextPage = () => {
   // const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   useEffect(()=> {
-    if( session?.user?.email === undefined && session?.user?.name === undefined) {
+    if(status !== "loading" && status !== "authenticated") {
       signIn();
     }
-  },[session?.user?.email, session?.user?.name])
+
+  },[status])
 
  
   return (
