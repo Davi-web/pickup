@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { trpc } from "../utils/trpc";
 import Card from "../components/card";
-import Image from "next/image";
 import Header from "../components/header";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { StyledEngineProvider } from "@mui/material";
@@ -13,10 +11,10 @@ const Home: NextPage = () => {
   // const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
   const { data: session } = useSession();
   useEffect(()=> {
-    if(session && session.user === undefined) {
+    if( session?.user?.email === undefined && session?.user?.name === undefined) {
       signIn();
     }
-  },[session])
+  },[session?.user?.email, session?.user?.name])
 
  
   return (
