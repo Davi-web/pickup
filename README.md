@@ -44,7 +44,7 @@ Also checkout these awesome tutorials on `create-t3-app`.
 
 1.  Open your preferred terminal
 2.  cd into a preferred directory
-3.  Use the command 'git clone https://pickup-davi-web.vercel.app/'
+3.  Use the command 'git clone https://github.com/Davi-web/pickup.git'
 4.  Open the folder with your IDE of choice
 
 ### Vercel
