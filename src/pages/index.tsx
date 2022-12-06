@@ -55,7 +55,7 @@ const Home: NextPage = () => {
           <Card
             name="Meetup with other vandy students!"
             description="Our application allows students to post events and suggest times where the most amount of people are available. RSVP for an event and meet up with your friends!"
-            documentation="/chatClass"
+            documentation="https://pickup-chat-chi.vercel.app/"
           />
          
         </div>
