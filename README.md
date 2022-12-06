@@ -38,7 +38,14 @@ Also checkout these awesome tutorials on `create-t3-app`.
 - [Build a full stack app with create-t3-app](https://www.nexxel.dev/blog/ct3a-guestbook)
 - [A first look at create-t3-app](https://dev.to/ajcwebdev/a-first-look-at-create-t3-app-1i8f)
 
-## How do I deploy this?
+## How do I install/deploy this?
+
+### Installation
+
+1.  Open your preferred terminal
+2.  cd into a preferred directory
+3.  Use the command 'git clone https://github.com/Davi-web/pickup.git'
+4.  Open the folder with your IDE of choice
 
 ### Vercel
 
