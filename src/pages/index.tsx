@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   // const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
   const { data: session } = useSession();
   useEffect(()=> {
-    if(session?.user === undefined) {
+    if(session && session.user === undefined) {
       signIn();
     }
   },[session])
