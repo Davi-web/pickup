@@ -4,7 +4,6 @@ import Card from "../components/card";
 import Header from "../components/header";
 import { useSession, signIn, signOut } from "next-auth/react"
 import { StyledEngineProvider } from "@mui/material";
-import { useEffect } from "react";
 
 
 const Home: NextPage = () => {
@@ -51,8 +50,9 @@ const Home: NextPage = () => {
         </div>
         <div className="flex items-center w-auto justify-center mt-8 px-8 py-4 text-white text-xl border-purple-600 border-4 rounded-full bg-purple-600 duration-500 motion-safe:hover:scale-105"
         onClick={()=>{
-          if(status !== "loading" && status !== "authenticated") {
+          if(status !== "authenticated") {
             signIn();
+            return;
           }
           window.location.href = `https://pickup-chat-chi.vercel.app?username=${session?.user?.email}&secret=${session?.user?.name}`;
         }}>
