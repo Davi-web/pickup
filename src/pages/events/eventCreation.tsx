@@ -6,6 +6,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { trpc } from '../../utils/trpc';
+import Header from "../../components/header";
+
  
 export default function EventCreation() {
 
@@ -49,6 +51,7 @@ export default function EventCreation() {
   }
 
   return (
+  <div><Header/>
   <div className='register'>
   <h1>Create an Event!</h1>
   <div ref={createdRef} id="createdRef" className='text-purple-600 text-lg flex justify-center'/>
@@ -100,6 +103,7 @@ export default function EventCreation() {
     <div className="flex justify-center pt-2">
       <button onClick={onSubmit} id="submitBtn" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
     </div>
+  </div>
   </div>
   );
 }
