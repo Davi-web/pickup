@@ -1,12 +1,21 @@
 import { trpc } from "../../utils/trpc";
 import Event from "../../components/event";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../../components/header";
+import { useSession, signIn } from "next-auth/react"
 
 
 const DisplayEvent = () => {
     const [inputSlider, setInputSlider] = useState("10");
     const [sportsType, setSportsType] = useState("");
+
+    const { data: session, status } = useSession();
+    useEffect(()=> {
+        if(status !== "loading" && status !== "authenticated") {
+            signIn();
+        }
+    },[status])
+
     //fetch events by sports type and slider value
     const eventsBySportsType = trpc.useQuery(["events.get-event-by-sports-type", {type: sportsType, size: parseInt(inputSlider)}]);
     
