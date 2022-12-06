@@ -11,6 +11,7 @@ import { StyledEngineProvider } from "@mui/material";
 const Home: NextPage = () => {
   // const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
   const { data: session } = useSession();
+  console.log(session?.user);
  
   return (
     <StyledEngineProvider>
@@ -55,7 +56,7 @@ const Home: NextPage = () => {
           <Card
             name="Meetup with other vandy students!"
             description="Our application allows students to post events and suggest times where the most amount of people are available. RSVP for an event and meet up with your friends!"
-            documentation="https://pickup-chat-chi.vercel.app/"
+            documentation={`https://pickup-chat-chi.vercel.app?username=${session?.user?.email}&secret=${session?.user?.id}`}
           />
          
         </div>
