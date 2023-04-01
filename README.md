@@ -1,69 +1,12 @@
-# pickup.io
-
-
 ## What is Pickup?
-Our product is an app called Pick Up that shows users  pickup sports games in the Vanderbilt area, allowing them to join or create these games at their convenience. Users can choose a sport, a designated number of people, an area to play in, and even specify genders if they would like to. Our app provides users with a safe and convenient way to connect with other college students to play pick up games. 
+Our product is an app called PickUp that shows users pickup sports games in the Vanderbilt area, allowing them to join or create these games at their convenience. Users can choose a sport, a designated number of people, an area to play in, and even specify genders if they would like to. Our app provides users with a safe and convenient way to connect with other college students to play pickup games. Users can create and view games that are happening in the area, and they can also join games that are already created. Users can also chat with other users in the app to coordinate games. User will be able to add events into their google calender so that they can keep track of their games.
 
-## Frameworks using:
-For the tech stack, we will use Node and Express for our backend.
-FIGMA to sketch out UI models for the wireframe
-Next.js with react(allows CSR and SSR rendering) for frontend. If we want to optimize performance we will look in to SSR. We didn’t think want to think about the database, using cloud solution to make our lives easier. We will use MongoDB Atlas, but if we find that scaling is an issue, we will switch to planetscale and Prisma. Lastly, we will use Kafka.js for the group chat  functionality.
-
-
-# Create T3 App
-
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
-
-## Why are there `.js` files in here?
-
-As per [T3-Axiom #3](https://github.com/t3-oss/create-t3-app/tree/next#3-typesafety-isnt-optional), we take typesafety as a first class citizen. Unfortunately, not all frameworks and plugins support TypeScript which means some of the configuration files have to be `.js` files.
-
-We try to emphasize that these files are javascript for a reason, by explicitly declaring its type (`cjs` or `mjs`) depending on what's supported by the library it is used by. Also, all the `js` files in this project are still typechecked using a `@ts-check` comment at the top.
-
-## What's next? How do I make an app with this?
-
-We try to keep this project as simple as possible, so you can start with the most basic configuration and then move on to more advanced configuration.
-
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
-
-- [Next-Auth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [TailwindCSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io) (using @next version? [see v10 docs here](https://trpc.io/docs/v10/))
-
-Also checkout these awesome tutorials on `create-t3-app`.
-
-- [Build a Blog With the T3 Stack - tRPC, TypeScript, Next.js, Prisma & Zod](https://www.youtube.com/watch?v=syEWlxVFUrY)
-- [Build a Live Chat Application with the T3 Stack - TypeScript, Tailwind, tRPC](https://www.youtube.com/watch?v=dXRRY37MPuk)
-- [Build a full stack app with create-t3-app](https://www.nexxel.dev/blog/ct3a-guestbook)
-- [A first look at create-t3-app](https://dev.to/ajcwebdev/a-first-look-at-create-t3-app-1i8f)
-
-## How do I install/deploy this?
-
-### Installation
-
-1.  Open your preferred terminal
-2.  cd into a preferred directory
-3.  Use the command 'git clone https://github.com/Davi-web/pickup.git'
-4.  Open the folder with your IDE of choice
-
-### Vercel
-
-We recommend deploying to [Vercel](https://vercel.com/?utm_source=t3-oss&utm_campaign=oss). It makes it super easy to deploy NextJs apps.
-
-- Push your code to a GitHub repository.
-- Go to [Vercel](https://vercel.com/?utm_source=t3-oss&utm_campaign=oss) and sign up with GitHub.
-- Create a Project and import the repository you pushed your code to.
-- Add your environment variables.
-- Click **Deploy**
-- Now whenever you push a change to your repository, Vercel will automatically redeploy your website!
-
-### Docker
-
-You can also dockerize this stack and deploy a container. See the [Docker deployment page](https://create-t3-app-nu.vercel.app/en/deployment/docker) for details.
-
-## Useful resources
-
-Here are some resources that we commonly refer to:
-
-- [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
+## Frameworks Used:
+- FIGMA to sketch out our initial wireframe. 
+- Next.js as our fullstack framework with React to build our frontend components. 
+- Tailwind CSS to style our frontend components.
+- NextAuth for our authentication.
+- Planetscale as our database provider and integrated easily within our app with the Prisma wrapper.
+- TRPC for our backend to achieve typesafety in our data models when refrencing them in our frontend and backend. 
+- ChatEngine API for the group chat functionality.
+- Google Calendar API to integrate with our app to allow users to add events to their calendar.
