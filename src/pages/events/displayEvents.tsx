@@ -1,13 +1,27 @@
 import { trpc } from "../../utils/trpc";
 import Event from "../../components/event";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Header from "../../components/header";
 import { useSession, signIn } from "next-auth/react"
+import ApiCalendar from "react-google-calendar-api";    
+const config = {
+    "clientId": "443757305938-g2ao75eap2acsn17ilf93ftratr5nq9f.apps.googleusercontent.com",
+    "apiKey": "AIzaSyA6P7jaozY0eYxBc4-wOHt87XiXI6dosfI",
+    "scope": "https://www.googleapis.com/auth/calendar",
+    "discoveryDocs": [
+      "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+    ]
+  }
+
+
+
+  const apiCalender = new ApiCalendar(config);
 
 
 const DisplayEvent = () => {
     const [inputSlider, setInputSlider] = useState("10");
     const [sportsType, setSportsType] = useState("");
+
 
     const { data: session, status } = useSession();
     useEffect(()=> {
@@ -18,6 +32,14 @@ const DisplayEvent = () => {
 
     //fetch events by sports type and slider value
     const eventsBySportsType = trpc.useQuery(["events.get-event-by-sports-type", {type: sportsType, size: parseInt(inputSlider)}]);
+    useEffect(() => {
+        if(apiCalender.sign) {
+            apiCalender.handleAuthClick();
+        }
+    },[])
+    
+
+   
     
     
 
@@ -56,7 +78,8 @@ const DisplayEvent = () => {
                     postedBy={event.postedBy}
                     postedDate={event.postedDate}
                     eventDate={event.eventTime}
-                    sportsType={event.sportsType? event.sportsType : "No sports type"} />
+                    sportsType={event.sportsType? event.sportsType : "No sports type"}
+                    api={apiCalender} />
                 ))}
                 
             </section>

@@ -3,17 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ApiCalendar from "react-google-calendar-api";
 import {env} from "../env/server.mjs";
-const config = {
-    "clientId": "443757305938-g2ao75eap2acsn17ilf93ftratr5nq9f.apps.googleusercontent.com",
-    "apiKey": "AIzaSyA6P7jaozY0eYxBc4-wOHt87XiXI6dosfI",
-    "scope": "https://www.googleapis.com/auth/calendar",
-    "discoveryDocs": [
-      "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
-    ]
-  }
 
-
-const apiCalender = new ApiCalendar(config);
 
 type EventProp = {
     id: number,
@@ -26,12 +16,13 @@ type EventProp = {
     postedDate: Date;
     eventDate : Date;
     sportsType: string;
+    api: any;
     
 }
 interface sportsType {
     [key: string]: string;
 }
-const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedBy, postedDate, eventDate, sportsType}: EventProp)=> {
+const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedBy, postedDate, eventDate, sportsType, api}: EventProp)=> {
     const sportEmojis: sportsType = {
         "Basketball": "🏀",
         "Soccer": "⚽",
@@ -52,10 +43,7 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
     const colorScheme = colors[id % colors.length];
     const [modal, setModal] = useState(false);
     
-    useEffect(() => {
-        //sign in to google calendar
-        apiCalender.handleAuthClick();
-    },[])
+  
 
 
 
@@ -64,7 +52,7 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
     const createEvent = async() => {
         try {
            
-            const res = await apiCalender.createEvent({
+            const res = await api.createEvent({
                 start: {
                     dateTime: eventDate.toISOString(),
                     timeZone: "America/Los_Angeles"
@@ -75,12 +63,11 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
                 },
                 
             }, );
-            console.log(res);
             //get calendar events id and update it
 
 
             const eventId = res.result.id;
-            const update = await apiCalender.updateEvent({
+            const update = await api.updateEvent({
                 summary: eventName,
                 description: eventDescription,
                 location: eventLocation,
@@ -95,11 +82,12 @@ const Event = ({id, eventDescription, eventId, eventLocation, eventName, postedB
                     }
                 }
             }, eventId);
-            console.log(update);
+            window.alert("Event created successfully to your google calendar!");
+
             setModal(false);
             
         } catch (err) {
-            console.log(err);
+            window.alert(err)
         }
        
     }
